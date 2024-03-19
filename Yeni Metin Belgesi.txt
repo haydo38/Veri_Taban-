@@ -1,0 +1,37 @@
+--create database school_library
+use school_library
+
+--create table uyeler(
+--uye_no int not null primary key identity (1,1),
+--uye_adi nvarchar(50) not null ,
+--uye_soyadi nvarchar(50) not null,
+--eposta nvarchar(100) not null,
+--cinsiyet char(2) not null,
+--telefon int 
+--);
+
+--create table adresler(
+--adresNo int not null primary key identity (1,1),
+--sehir  nvarchar(50) not null ,
+--mahalle nvarchar(50) not null,
+--binaNo int,
+--cadde nvarchar(200),
+--ülke nvarchar(200),
+--postakodu int
+--);
+ 
+alter table uyeler add adresNo int 
+constraint FK_uyeler_adres 
+foreign key (adresNo) 
+references adresler (adresNo); 
+
+
+
+create table kutuphane(
+kutuphaneNo int not null identity(1,1) primary key,
+kutuphaneİsmi nvarchar(500),
+aciklama nvarchar(500),
+adresNo int constraint FK_Adresler_kutuphane
+foreign key(adresNo) references adresler(adresNo)
+);
+Select * From kutuphane
